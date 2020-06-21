@@ -8,13 +8,13 @@ import estilo from "./estilo";
 
 const Cabecalho = ({ nomeUsuario }) => {
     return (
-        <Fragment>
+        <View style={estilo.cabecalho}>
             <Image
                 source={require("../../../res/img/alura.jpg")}
                 style={estilo.fotoUsuario}
             />
             <Text>{nomeUsuario}</Text>
-        </Fragment>
+        </View>
     );
 }
 
