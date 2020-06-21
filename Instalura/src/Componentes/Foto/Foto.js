@@ -10,7 +10,6 @@ import estilo from './estilo';
 const Foto = () => {
     return (
         <Fragment>
-
             <Image
                 source={require("../../../res/img/alura.jpg")}
                 style={estilo.imagem}
