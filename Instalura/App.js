@@ -8,6 +8,7 @@ import {
   StyleSheet,
   FlatList} from 'react-native';
 import Cabecalho from "./src/Componentes/Cabecalho";
+import Foto from "./src/Componentes/Foto";
 
 const largura = Dimensions.get("screen").width;
 const informacoes = [
@@ -26,10 +27,7 @@ const App = () => {
         renderItem={({item}) =>
             <Fragment>
               <Cabecalho nomeUsuario={item.usuario} />
-              <Image 
-                source={require("./res/img/alura.jpg")}
-                style={estilo.imagem}
-              />
+              <Foto />
             </Fragment>
         }
       />
