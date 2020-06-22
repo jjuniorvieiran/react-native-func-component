@@ -7,17 +7,29 @@ import {
 import estilo from './estilo';
 
 
-const Foto = () => {
+const Foto = ({ urlFoto, descricao }) => {
     return (
         <Fragment>
             <Image
-                source={require("../../../res/img/alura.jpg")}
+                source={{ uri: urlFoto }}
                 style={estilo.imagem}
             />
-            <Text>Descrição da foto</Text>
+            <Text>{descricao}</Text>
+            <Image
+                source={ImgLike(1)}
+                style={estilo.like}
+            />
         </Fragment>
     )
 };
 
+
+const ImgLike = (curtiu) => {
+    if (curtiu) {
+        return require("../../../res/img/s2-checked.png")
+    } else {
+        return require("../../../res/img/s2.png")
+    }
+}
 
 export default Foto;

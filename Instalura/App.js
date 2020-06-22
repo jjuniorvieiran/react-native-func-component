@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import {Cabecalho} from "./src/Componentes/Cabecalho";
 import {Foto} from "./src/Componentes/Foto";
+import lerFotos from './src/api/feed';
 
 
 const App = () => {
@@ -14,15 +15,7 @@ const App = () => {
   const [fotos, setFotos] = useState([]);
 
   useEffect(() => {
-
-    const lerFotos = async (callback) => {
-        const fotosHTTP = await fetch("http://localhost:3030/feed");
-        const fotosJson = await fotosHTTP.json();
-        setFotos(fotosJson);
-    }
-
-  lerFotos();
-
+    lerFotos(setFotos);
   }, [])
 
   return (
@@ -32,8 +25,14 @@ const App = () => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) =>
           <Fragment>
-            <Cabecalho nomeUsuario={item.userName} />
-            <Foto />
+            <Cabecalho 
+              nomeUsuario={item.userName}
+              urlImage={item.userURL}
+            />
+            <Foto 
+              urlFoto={item.url}
+              descricao={item.description}
+            />
           </Fragment>
         }
       />
