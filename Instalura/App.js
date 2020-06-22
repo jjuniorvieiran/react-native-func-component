@@ -1,5 +1,5 @@
 
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import {
   ScrollView,
   Dimensions,
@@ -8,22 +8,31 @@ import {
 import {Cabecalho} from "./src/Componentes/Cabecalho";
 import {Foto} from "./src/Componentes/Foto";
 
-const informacoes = [
-  { id: 1, usuario: "Junior" },
-  { id: 2, usuario: "Dani" },
-  { id: 3, usuario: "Maraschin" }
-]
-
 
 const App = () => {
+
+  const [fotos, setFotos] = useState([]);
+
+  useEffect(() => {
+
+    const lerFotos = async (callback) => {
+        const fotosHTTP = await fetch("http://localhost:3030/feed");
+        const fotosJson = await fotosHTTP.json();
+        setFotos(fotosJson);
+    }
+
+  lerFotos();
+
+  }, [])
+
   return (
     <ScrollView>
       <FlatList
-        data={informacoes}
+        data={fotos}
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) =>
           <Fragment>
-            <Cabecalho nomeUsuario={item.usuario} />
+            <Cabecalho nomeUsuario={item.userName} />
             <Foto />
           </Fragment>
         }
