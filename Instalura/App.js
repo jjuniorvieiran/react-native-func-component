@@ -5,8 +5,9 @@ import {
   Dimensions,
   FlatList
 } from 'react-native';
-import {Cabecalho} from "./src/Componentes/Cabecalho";
-import {Foto} from "./src/Componentes/Foto";
+import { Cabecalho } from "./src/Componentes/Cabecalho";
+import { Foto } from "./src/Componentes/Foto";
+import { Comentarios } from "./src/Componentes/Comentarios";
 import lerFotos from './src/api/feed';
 
 
@@ -25,15 +26,16 @@ const App = () => {
         keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) =>
           <Fragment>
-            <Cabecalho 
+            <Cabecalho
               nomeUsuario={item.userName}
               urlImage={item.userURL}
             />
-            <Foto 
+            <Foto
               urlFoto={item.url}
               descricao={item.description}
               qntLikes={item.likes}
             />
+            <Comentarios comentarios={item.comentarios} />
           </Fragment>
         }
       />
