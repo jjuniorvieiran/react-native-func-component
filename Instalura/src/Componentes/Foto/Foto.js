@@ -1,13 +1,29 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState } from 'react';
 import {
     Image,
-    Text
+    Text,
+    TouchableOpacity,
+    View
 } from "react-native";
 
 import estilo from './estilo';
 
 
-const Foto = ({ urlFoto, descricao }) => {
+const Foto = ({ urlFoto, descricao, qntLikes  }) => {
+    const [curtiu, setCurtiu] = useState(false);
+    const [likes, setLikes] = useState(qntLikes)
+
+    const curtirFoto = () => {
+        let qnt = likes;
+        if (curtiu) {
+            qnt--;
+        } else {
+            qnt++;
+        }
+        setLikes(qnt)
+        setCurtiu(!curtiu)
+    }
+
     return (
         <Fragment>
             <Image
@@ -15,10 +31,15 @@ const Foto = ({ urlFoto, descricao }) => {
                 style={estilo.imagem}
             />
             <Text>{descricao}</Text>
-            <Image
-                source={ImgLike(1)}
-                style={estilo.like}
-            />
+            <View style={estilo.viewLike}>
+                <TouchableOpacity onPress={curtirFoto}>
+                    <Image
+                        source={ImgLike(curtiu)}
+                        style={estilo.like}
+                    />
+                </TouchableOpacity>
+                <Text>curtidas {likes}</Text>
+            </View>
         </Fragment>
     )
 };
