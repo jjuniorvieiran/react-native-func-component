@@ -21,10 +21,10 @@ const Comentarios = ({ comentarios }) => {
         const novoComentario = {
             date: Date.now(),
             text: conteudoCampoInput,
-            userName: "Bugan"
+            userName: "Junior"
         }
 
-        setComentarios([...estComentarios, novoComentario]);
+        setComentarios([...estComentarios, novoComentario]); //desconstruction the array, and add a new item
     }
 
 
